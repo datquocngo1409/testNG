@@ -2,9 +2,15 @@ package com.bitnemo.testng.core;
 
 import com.bitnemo.testng.pages.LoginPage;
 import com.bitnemo.testng.pages.MainPage;
+import com.bitnemo.testng.utils.SessionManager;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.monte.media.Format;
 import org.monte.media.math.Rational;
 import org.monte.screenrecorder.ScreenRecorder;
+import org.openqa.selenium.Cookie;
 
 import java.awt.*;
 import java.io.File;
@@ -58,19 +64,46 @@ public class CoreFunction {
     LoginPage loginPage = LoginPage.getInstance();
     MainPage mainPage = MainPage.getInstance();
     public void login() {
-        try {
-            boolean isLoggedIn = mainPage.getUserItem().isDisplayed();
-        } catch (Exception e) {
-            String url = getUrl();
-            open(url);
-            loginPage.getInputUsername().sendKeys("linhht@bitnemo.vn");
-            loginPage.getInputPassword().sendKeys("Admin19101");
-            loginPage.getLoginButton().click();
-            while (!mainPage.getUserItem().isDisplayed()) {
-                sleep(500);
-            }
-            sessionStorage().setItem("userLoggedIn", "linhht@bitnemo.vn");
+        String path = System.getProperty("user.dir");
+        Configuration.browserSize = "1280x800";
+        SelenideLogger.addListener("allure", new AllureSelenide());
+//        Configuration.browser = "firefox";
+        open(getUrl());
+        SessionManager sessionManager = new SessionManager(WebDriverRunner.getWebDriver());
+        loginPage.getInputUsername().sendKeys("linhht@bitnemo.vn");
+        loginPage.getInputPassword().sendKeys("Admin19101");
+        loginPage.getLoginButton().click();
+        while (!mainPage.getUserItem().isDisplayed()) {
+            sleep(500);
         }
+        try {
+            sessionManager.storeSessionFile("linhht@bitnemo.vn", "linhht@bitnemo.vn");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+//        sessionManager.usePreviousLoggedInSession("linhht@bitnemo.vn", getTrackingUrl());
+//            System.out.println("Use old session");
+//            WebDriverRunner.getWebDriver().navigate().to(getTrackingUrl());
+
+//        try {
+//            sessionManager.usePreviousLoggedInSession("linhht@bitnemo.vn");
+//            System.out.println("Use old session");
+////            WebDriverRunner.getWebDriver().navigate().to(getTrackingUrl());
+//            while (true) {
+//                sleep(500);
+//            }
+//        } catch (Exception e1) {
+//
+//        }
+    }
+
+    private boolean haveSessionID() {
+        for (Cookie s : WebDriverRunner.getWebDriver().manage().getCookies()) {
+            System.out.println(s.getName());
+            if (s.getName().equals("SESSION")) return true;
+        }
+        return false;
     }
 
     private String getUrl() {
@@ -87,6 +120,24 @@ public class CoreFunction {
             }
             default: {
                 return "https://int.logifleet360.ch/";
+            }
+        }
+    }
+
+    private String getTrackingUrl() {
+        if (System.getenv().get("URL") == null) return "https://int.logifleet360.ch/lfr3/#/tracking";
+        switch (System.getenv().get("URL")) {
+            case "INT": {
+                return "https://int.logifleet360.ch/lfr3/#/tracking";
+            }
+            case "PTA": {
+                return "https://pta.logifleet360.ch/lfr3/#/tracking";
+            }
+            case "PRD": {
+                return "https://logifleet360.ch/lfr3/#/tracking";
+            }
+            default: {
+                return "https://int.logifleet360.ch/lfr3/#/tracking";
             }
         }
     }
