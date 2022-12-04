@@ -3,24 +3,24 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="E:/SourceCode/Selenium-Java/TestFrameworkJavaSelenium/testNG">
         <classes>
-            <class name="com.bitnemo.testng.tests.MainPageTest">
+            <class name="com.bitnemo.testng.testcase.MainPageTest">
                 <methods>
                     <include name="goToSetting"/>
                     <include name="testUserMenu"/>
                 </methods>
             </class>
-            <class name="com.bitnemo.testng.tests.ReportTest">
+            <class name="com.bitnemo.testng.testcase.ReportTest">
                 <methods>
                     <include name="showReport"/>
                 </methods>
             </class>
-            <class name="com.bitnemo.testng.tests.SettingTest">
+            <class name="com.bitnemo.testng.testcase.SettingTest">
                 <methods>
                     <include name="goToSetting"/>
                     <include name="goToWOCSetting"/>
                 </methods>
             </class>
-            <class name="com.bitnemo.testng.tests.WocReportTest">
+            <class name="com.bitnemo.testng.testcase.WocReportTest">
                 <methods>
                     <include name="showWOCReport"/>
                 </methods>

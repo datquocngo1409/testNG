@@ -1,8 +1,8 @@
-package com.bitnemo.testng.tests;
+package com.bitnemo.testng.testcase;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import com.bitnemo.testng.core.CoreFunction;
+import com.bitnemo.testng.base.CoreFunction;
 import com.bitnemo.testng.pages.MainPage;
 import com.bitnemo.testng.pages.settings.SettingPage;
 import com.bitnemo.testng.pages.settings.woc.SettingWocPage;

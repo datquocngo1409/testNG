@@ -1,4 +1,4 @@
-package com.bitnemo.testng.core;
+package com.bitnemo.testng.base;
 
 import com.bitnemo.testng.pages.LoginPage;
 import com.bitnemo.testng.pages.MainPage;

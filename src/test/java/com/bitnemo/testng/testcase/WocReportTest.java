@@ -1,6 +1,6 @@
-package com.bitnemo.testng.tests;
+package com.bitnemo.testng.testcase;
 
-import com.bitnemo.testng.core.CoreFunction;
+import com.bitnemo.testng.base.CoreFunction;
 import com.bitnemo.testng.pages.MainPage;
 import com.bitnemo.testng.pages.wocreport.WocReportPage;
 import com.codeborne.selenide.Configuration;
