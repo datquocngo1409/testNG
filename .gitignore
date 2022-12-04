@@ -1,0 +1,6 @@
+.git
+.idea
+.mvn
+build
+target
+allure-results
