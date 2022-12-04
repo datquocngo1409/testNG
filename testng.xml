@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="E:/SourceCode/Selenium-Java/TestFrameworkJavaSelenium/testNG">
+        <classes>
+            <class name="com.bitnemo.testng.tests.MainPageTest">
+                <methods>
+                    <include name="goToSetting"/>
+                    <include name="testUserMenu"/>
+                </methods>
+            </class>
+            <class name="com.bitnemo.testng.tests.ReportTest">
+                <methods>
+                    <include name="showReport"/>
+                </methods>
+            </class>
+            <class name="com.bitnemo.testng.tests.SettingTest">
+                <methods>
+                    <include name="goToSetting"/>
+                    <include name="goToWOCSetting"/>
+                </methods>
+            </class>
+            <class name="com.bitnemo.testng.tests.WocReportTest">
+                <methods>
+                    <include name="showWOCReport"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
